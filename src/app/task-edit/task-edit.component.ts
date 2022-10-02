@@ -28,18 +28,16 @@ export class TaskEditComponent implements OnInit {
         this.task = data;
         this.title.setValue(this.task.title);
         this.note.setValue(this.task.note);
+        this.id = this.task.id;
       });
-      this.id = this.task.id;
-      this.note.setValue(this.task.note);
-      this.title.setValue(this.task.title);
     });
   }
 
-  /**
-   * Update the task and return to the list
-   */
+
   updateTask() {
-    this.storage.editTodo(this.id, this.title.value, this.note.value);
-    this.router.navigate(['/tasks'])
+    this.storage.editTodo(this.id, this.title.value, this.note.value).subscribe(res => {
+
+      this.router.navigate(['/tasks'])
+    });
   }
 }

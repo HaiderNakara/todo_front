@@ -29,11 +29,13 @@ export class TaskStorageService {
   }
 
   editTodo(id: string, title: string, note: string) {
-    let editUrl = `${environment.backendUrl}`
-    return this.http.put(editUrl, {
+    console.log(id);
+
+    let editUrl = `${environment.backendUrl}/${id}`
+    return this.http.patch(editUrl, {
       title,
       note
-    }).subscribe(res => { });
+    })
   }
   deleteTodo(id: string): Observable<any> {
     let deleteUrl = `${environment.backendUrl}/${id}`

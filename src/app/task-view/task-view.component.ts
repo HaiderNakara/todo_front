@@ -26,7 +26,10 @@ export class TaskViewComponent implements OnInit {
 
 
   delete(id): void {
-    this.storage.deleteTodo(this.task.id)
-    this.router.navigate(['/tasks'])
+    this.storage.deleteTodo(this.task.id).subscribe(
+      () => {
+        this.router.navigate(['/tasks'])
+      }
+    )
   }
 }
